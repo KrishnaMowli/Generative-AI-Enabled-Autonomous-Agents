@@ -10,3 +10,4 @@ dist/
 results/traces_all/
 results_check/
 out.jsonl
+results/demo/

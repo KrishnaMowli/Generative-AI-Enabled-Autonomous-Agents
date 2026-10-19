@@ -1,0 +1,171 @@
+name: s0_nominal
+description: 'Reference scenario: 3 heterogeneous agents, 7 tasks with dependencies, no faults.'
+mission_text: Inspect zones A, B and C, take the required readings at each zone, and compile a report
+  after all inspections are complete.
+required_outcomes:
+- task_type: visual_inspection
+  zone: A
+- task_type: environmental_reading
+  zone: A
+- task_type: visual_inspection
+  zone: B
+- task_type: environmental_reading
+  zone: B
+- task_type: visual_inspection
+  zone: C
+- task_type: environmental_reading
+  zone: C
+- task_type: compile_report
+  zone: null
+world:
+  grid:
+  - '.......#........'
+  - '.......#........'
+  - '.......#........'
+  - '................'
+  - '.......#........'
+  - '.......#...###..'
+  - '.......#........'
+  - '.......#........'
+  - '................'
+  - '.......#........'
+  - .#.#...#........
+  - ..#....#........
+  zones:
+    HQ:
+    - 0
+    - 1
+    A:
+    - 2
+    - 12
+    B:
+    - 9
+    - 12
+    C:
+    - 10
+    - 2
+    D:
+    - 6
+    - 9
+  report_zone: HQ
+agents:
+- agent_id: agent_1
+  capabilities:
+  - navigation
+  - visual_inspection
+  - reporting
+  start:
+  - 1
+  - 2
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_2
+  capabilities:
+  - navigation
+  - environmental_reading
+  start:
+  - 9
+  - 5
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_3
+  capabilities:
+  - navigation
+  - visual_inspection
+  - environmental_reading
+  - reporting
+  start:
+  - 11
+  - 14
+  battery: 60
+  battery_reserve: 10
+manual_plan:
+- task_id: inspect_zone_A_visual
+  task_type: visual_inspection
+  target_zone: A
+  required_capabilities:
+  - visual_inspection
+  depends_on: []
+  priority: 3
+  estimated_duration_s: 30.0
+  acceptance_criteria:
+  - inspection_result_recorded
+  retry_policy: safe_to_retry
+- task_id: read_zone_A_env
+  task_type: environmental_reading
+  target_zone: A
+  required_capabilities:
+  - environmental_reading
+  depends_on: []
+  priority: 2
+  estimated_duration_s: 20.0
+  acceptance_criteria:
+  - reading_recorded
+  retry_policy: verify_before_retry
+- task_id: inspect_zone_B_visual
+  task_type: visual_inspection
+  target_zone: B
+  required_capabilities:
+  - visual_inspection
+  depends_on: []
+  priority: 3
+  estimated_duration_s: 30.0
+  acceptance_criteria:
+  - inspection_result_recorded
+  retry_policy: safe_to_retry
+- task_id: read_zone_B_env
+  task_type: environmental_reading
+  target_zone: B
+  required_capabilities:
+  - environmental_reading
+  depends_on: []
+  priority: 2
+  estimated_duration_s: 20.0
+  acceptance_criteria:
+  - reading_recorded
+  retry_policy: verify_before_retry
+- task_id: inspect_zone_C_visual
+  task_type: visual_inspection
+  target_zone: C
+  required_capabilities:
+  - visual_inspection
+  depends_on: []
+  priority: 3
+  estimated_duration_s: 30.0
+  acceptance_criteria:
+  - inspection_result_recorded
+  retry_policy: safe_to_retry
+- task_id: read_zone_C_env
+  task_type: environmental_reading
+  target_zone: C
+  required_capabilities:
+  - environmental_reading
+  depends_on: []
+  priority: 2
+  estimated_duration_s: 20.0
+  acceptance_criteria:
+  - reading_recorded
+  retry_policy: verify_before_retry
+- task_id: compile_report
+  task_type: compile_report
+  target_zone: HQ
+  required_capabilities:
+  - reporting
+  depends_on:
+  - inspect_zone_A_visual
+  - read_zone_A_env
+  - inspect_zone_B_visual
+  - read_zone_B_env
+  - inspect_zone_C_visual
+  - read_zone_C_env
+  priority: 4
+  estimated_duration_s: 15.0
+  acceptance_criteria:
+  - report_compiled
+  retry_policy: verify_before_retry
+randomization:
+  start_jitter: 2
+  duration_jitter: 0.2
+  battery_jitter: 0.05
+expectation:
+  mission_status: COMPLETE

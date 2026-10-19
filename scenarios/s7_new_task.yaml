@@ -1,0 +1,21 @@
+extends: s0_nominal.yaml
+name: s7_new_task
+description: A high-priority inspection of zone D is added at tick 10 while the mission runs.
+expectation:
+  mission_status_with_replan: COMPLETE
+events:
+- type: TASK_ADDED
+  tick: 10
+  task:
+    task_id: inspect_zone_D_visual
+    task_type: visual_inspection
+    target_zone: D
+    required_capabilities:
+    - visual_inspection
+    depends_on: []
+    priority: 5
+    estimated_duration_s: 30
+    acceptance_criteria:
+    - inspection_result_recorded
+    retry_policy: safe_to_retry
+    mandatory: true

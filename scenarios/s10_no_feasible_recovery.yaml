@@ -1,0 +1,47 @@
+extends: s0_nominal.yaml
+name: s10_no_feasible_recovery
+description: 'Only agent_1 can report; it fails early. The report task has no feasible agent: must be
+  reported, not hidden. (Modelling assumption: the failed agent is cleared from the grid and does not
+  block its cell.)'
+expectation:
+  mission_status: INCOMPLETE
+  unassigned_reason: NO_AVAILABLE_AGENT
+agents:
+- agent_id: agent_1
+  capabilities:
+  - navigation
+  - visual_inspection
+  - reporting
+  start:
+  - 1
+  - 2
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_2
+  capabilities:
+  - navigation
+  - environmental_reading
+  start:
+  - 9
+  - 5
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_3
+  capabilities:
+  - navigation
+  - visual_inspection
+  - environmental_reading
+  start:
+  - 11
+  - 14
+  battery: 100
+  battery_reserve: 10
+events:
+- type: AGENT_FAILED
+  agent_id: agent_1
+  tick_window:
+  - 3
+  - 6
+settings_overrides:
+  simulation:
+    failed_agents_block_cell: false

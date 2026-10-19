@@ -1,0 +1,37 @@
+extends: s0_nominal.yaml
+name: s1_heterogeneity
+description: 'Scarce capability: only agent_3 can take environmental readings; agent_2 can only navigate/report.'
+expectation:
+  mission_status: COMPLETE
+  env_only_agent: agent_3
+agents:
+- agent_id: agent_1
+  capabilities:
+  - navigation
+  - visual_inspection
+  - reporting
+  start:
+  - 1
+  - 2
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_2
+  capabilities:
+  - navigation
+  - reporting
+  start:
+  - 9
+  - 5
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_3
+  capabilities:
+  - navigation
+  - visual_inspection
+  - environmental_reading
+  - reporting
+  start:
+  - 11
+  - 14
+  battery: 100
+  battery_reserve: 10

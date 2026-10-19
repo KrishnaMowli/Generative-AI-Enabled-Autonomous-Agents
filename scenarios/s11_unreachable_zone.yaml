@@ -1,0 +1,13 @@
+extends: s0_nominal.yaml
+name: s11_unreachable_zone
+description: 'The only entrance (9,2) of zone C''s alcove is blocked at tick 2: C becomes unreachable
+  after validation.'
+expectation:
+  mission_status: INCOMPLETE
+  unassigned_reason: NO_REACHABLE_PATH_or_UNREACHABLE
+events:
+- type: CELL_BLOCKED
+  tick: 2
+  cell:
+  - 9
+  - 2

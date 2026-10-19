@@ -1,0 +1,15 @@
+extends: s0_nominal.yaml
+name: s8_uncertain_task
+description: 'agent_2 fails halfway through an environmental reading (non-idempotent: verify_before_retry).
+  (Modelling assumption: the failed agent is cleared from the grid and does not block its cell.)'
+expectation:
+  mission_status_with_replan: COMPLETE
+  verify_logged: true
+events:
+- type: AGENT_FAILED
+  agent_id: agent_2
+  when_agent_executing: agent_2
+  when_progress: 0.5
+settings_overrides:
+  simulation:
+    failed_agents_block_cell: false

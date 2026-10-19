@@ -1,0 +1,8 @@
+extends: s0_nominal.yaml
+name: s4a_malformed_repaired
+description: First LLM response is malformed JSON; one bounded repair attempt succeeds.
+expectation:
+  mission_status: COMPLETE
+  planner_calls: 2
+planner_faults:
+- malformed_json

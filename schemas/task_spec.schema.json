@@ -1,0 +1,68 @@
+{
+  "additionalProperties": false,
+  "description": "Candidate task proposed by the planner. Strict: no extra fields, no coercion.",
+  "properties": {
+    "acceptance_criteria": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Acceptance Criteria",
+      "type": "array"
+    },
+    "depends_on": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Depends On",
+      "type": "array"
+    },
+    "estimated_duration_s": {
+      "title": "Estimated Duration S",
+      "type": "number"
+    },
+    "mandatory": {
+      "default": true,
+      "title": "Mandatory",
+      "type": "boolean"
+    },
+    "priority": {
+      "title": "Priority",
+      "type": "integer"
+    },
+    "required_capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Capabilities",
+      "type": "array"
+    },
+    "retry_policy": {
+      "default": "safe_to_retry",
+      "title": "Retry Policy",
+      "type": "string"
+    },
+    "target_zone": {
+      "title": "Target Zone",
+      "type": "string"
+    },
+    "task_id": {
+      "title": "Task Id",
+      "type": "string"
+    },
+    "task_type": {
+      "title": "Task Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_id",
+    "task_type",
+    "target_zone",
+    "required_capabilities",
+    "priority",
+    "estimated_duration_s",
+    "acceptance_criteria"
+  ],
+  "title": "TaskSpec",
+  "type": "object"
+}

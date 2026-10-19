@@ -1,0 +1,129 @@
+{"agents": [{"agent_id": "agent_1", "battery": 97.4723, "capabilities": ["navigation", "visual_inspection", "reporting"], "start": [2, 2]}, {"agent_id": "agent_2", "battery": 100.0, "capabilities": ["navigation", "environmental_reading"], "start": [10, 5]}, {"agent_id": "agent_3", "battery": 60.1549, "capabilities": ["navigation", "visual_inspection", "environmental_reading", "reporting"], "start": [10, 13]}], "allocator": "nearest", "provider": "mock", "replan": true, "scenario": "s0_nominal", "seed": 0, "seq": 0, "settings_digest": "4c5c4f6813c4", "tick": 0, "tick_seconds": 5.0, "type": "mission_start", "variant": "E_mock_nearest_replan"}
+{"index": 0, "input_tokens": 720, "latency_s": 0.00012086000003819208, "model": "rule-based-v1", "outcome": "accepted", "output_tokens": 542, "prompt_version": "task_decomposer_v1", "provider": "mock", "raw_output": "{\"status\": \"plan\", \"tasks\": [{\"acceptance_criteria\": [\"inspection_result_recorded\"], \"depends_on\": [], \"estimated_duration_s\": 30.0, \"priority\": 3, \"required_capabilities\": [\"visual_inspection\"], \"retry_policy\": \"safe_to_retry\", \"target_zone\": \"A\", \"task_id\": \"inspect_zone_A_visual\", \"task_type\": \"visual_inspection\"}, {\"acceptance_criteria\": [\"reading_recorded\"], \"depends_on\": [], \"estimated_duration_s\": 20.0, \"priority\": 2, \"required_capabilities\": [\"environmental_reading\"], \"retry_policy\": \"verify_before_retry\", \"target_zone\": \"A\", \"task_id\": \"read_zone_A_env\", \"task_type\": \"environmental_reading\"}, {\"acceptance_criteria\": [\"inspection_result_recorded\"], \"depends_on\": [], \"estimated_duration_s\": 30.0, \"priority\": 3, \"required_capabilities\": [\"visual_inspection\"], \"retry_policy\": \"safe_to_retry\", \"target_zone\": \"B\", \"task_id\": \"inspect_zone_B_visual\", \"task_type\": \"visual_inspection\"}, {\"acceptance_criteria\": [\"reading_recorded\"], \"depends_on\": [], \"estimated_duration_s\": 20.0, \"priority\": 2, \"required_capabilities\": [\"environmental_reading\"], \"retry_policy\": \"verify_before_retry\", \"target_zone\": \"B\", \"task_id\": \"read_zone_B_env\", \"task_type\": \"environmental_reading\"}, {\"acceptance_criteria\": [\"inspection_result_recorded\"], \"depends_on\": [], \"estimated_duration_s\": 30.0, \"priority\": 3, \"required_capabilities\": [\"visual_inspection\"], \"retry_policy\": \"safe_to_retry\", \"target_zone\": \"C\", \"task_id\": \"inspect_zone_C_visual\", \"task_type\": \"visual_inspection\"}, {\"acceptance_criteria\": [\"reading_recorded\"], \"depends_on\": [], \"estimated_duration_s\": 20.0, \"priority\": 2, \"required_capabilities\": [\"environmental_reading\"], \"retry_policy\": \"verify_before_retry\", \"target_zone\": \"C\", \"task_id\": \"read_zone_C_env\", \"task_type\": \"environmental_reading\"}, {\"acceptance_criteria\": [\"report_compiled\"], \"depends_on\": [\"inspect_zone_A_visual\", \"read_zone_A_env\", \"inspect_zone_B_visual\", \"read_zone_B_env\", \"inspect_zone_C_visual\", \"read_zone_C_env\"], \"estimated_duration_s\": 15.0, \"priority\": 4, \"required_capabilities\": [\"reporting\"], \"retry_policy\": \"verify_before_retry\", \"target_zone\": \"HQ\", \"task_id\": \"compile_report\", \"task_type\": \"compile_report\"}]}", "seq": 1, "tick": 0, "type": "plan_attempt", "violation_codes": []}
+{"n_tasks": 7, "seq": 2, "task_ids": ["inspect_zone_A_visual", "read_zone_A_env", "inspect_zone_B_visual", "read_zone_B_env", "inspect_zone_C_visual", "read_zone_C_env", "compile_report"], "tick": 0, "type": "plan_accepted"}
+{"agent_id": "agent_3", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 3, "task_id": "inspect_zone_B_visual", "tick": 0, "to_state": "ASSIGNED", "type": "task_transition"}
+{"agent_id": "agent_1", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 4, "task_id": "inspect_zone_C_visual", "tick": 0, "to_state": "ASSIGNED", "type": "task_transition"}
+{"agent_id": "agent_2", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 5, "task_id": "read_zone_C_env", "tick": 0, "to_state": "ASSIGNED", "type": "task_transition"}
+{"allocator": "nearest", "assignments": {"inspect_zone_B_visual": "agent_3", "inspect_zone_C_visual": "agent_1", "read_zone_C_env": "agent_2"}, "n_tasks": 6, "objective": 2.1688842203548084, "plan_version": 1, "seq": 6, "status": "ok", "tick": 0, "trigger": "initial", "type": "allocation", "unassigned": {}}
+{"agent_id": "agent_1", "from_state": "ASSIGNED", "reason": "", "seq": 7, "task_id": "inspect_zone_C_visual", "tick": 0, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_1", "from_state": "READY", "reason": "dispatch_approved", "seq": 8, "task_id": "inspect_zone_C_visual", "tick": 0, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_2", "from_state": "ASSIGNED", "reason": "", "seq": 9, "task_id": "read_zone_C_env", "tick": 0, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_2", "from_state": "READY", "reason": "dispatch_approved", "seq": 10, "task_id": "read_zone_C_env", "tick": 0, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_3", "from_state": "ASSIGNED", "reason": "", "seq": 11, "task_id": "inspect_zone_B_visual", "tick": 0, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_3", "from_state": "READY", "reason": "dispatch_approved", "seq": 12, "task_id": "inspect_zone_B_visual", "tick": 0, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [2, 2], "seq": 13, "tick": 0, "to_cell": [3, 2], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [10, 13], "seq": 14, "tick": 0, "to_cell": [9, 13], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [10, 5], "seq": 15, "tick": 0, "to_cell": [10, 4], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [3, 2], "seq": 16, "tick": 1, "to_cell": [4, 2], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [9, 13], "seq": 17, "tick": 1, "to_cell": [9, 12], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [10, 4], "seq": 18, "tick": 1, "to_cell": [9, 4], "type": "move"}
+{"agent_id": "agent_3", "energy": 3.0, "seq": 19, "task_id": "inspect_zone_B_visual", "tick": 1, "type": "work_start", "work_ticks": 6}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [4, 2], "seq": 20, "tick": 2, "to_cell": [5, 2], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [9, 4], "seq": 21, "tick": 2, "to_cell": [9, 3], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [5, 2], "seq": 22, "tick": 3, "to_cell": [6, 2], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [9, 3], "seq": 23, "tick": 3, "to_cell": [9, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [6, 2], "seq": 24, "tick": 4, "to_cell": [7, 2], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [9, 2], "seq": 25, "tick": 4, "to_cell": [10, 2], "type": "move"}
+{"agent_id": "agent_2", "energy": 4.0, "seq": 26, "task_id": "read_zone_C_env", "tick": 4, "type": "work_start", "work_ticks": 5}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [7, 2], "seq": 27, "tick": 5, "to_cell": [8, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [8, 2], "seq": 28, "tick": 6, "to_cell": [9, 2], "type": "move"}
+{"agent_id": "agent_3", "result": {"agent_id": "agent_3", "defects_found": 1, "observation_id": "obs-inspect_zone_B_visual-314145", "zone": "B"}, "seq": 29, "task_id": "inspect_zone_B_visual", "tick": 7, "type": "task_result"}
+{"agent_id": "agent_3", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_3", "defects_found": 1, "observation_id": "obs-inspect_zone_B_visual-314145", "zone": "B"}, "seq": 30, "task_id": "inspect_zone_B_visual", "tick": 7, "type": "event"}
+{"agent_id": "agent_1", "blocker": "agent_2", "code": "NODE_OCCUPIED", "seq": 31, "tick": 7, "type": "move_rejected"}
+{"agent_id": "agent_3", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 32, "task_id": "inspect_zone_B_visual", "tick": 7, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"agent_id": "agent_3", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 33, "task_id": "read_zone_B_env", "tick": 8, "to_state": "ASSIGNED", "type": "task_transition"}
+{"allocator": "nearest", "assignments": {"read_zone_B_env": "agent_3"}, "n_tasks": 3, "objective": 0.22875816993464052, "plan_version": 1, "seq": 34, "status": "ok", "tick": 8, "trigger": "cycle", "type": "allocation", "unassigned": {}}
+{"agent_id": "agent_3", "from_state": "ASSIGNED", "reason": "", "seq": 35, "task_id": "read_zone_B_env", "tick": 8, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_3", "from_state": "READY", "reason": "dispatch_approved", "seq": 36, "task_id": "read_zone_B_env", "tick": 8, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_3", "energy": 4.0, "seq": 37, "task_id": "read_zone_B_env", "tick": 8, "type": "work_start", "work_ticks": 4}
+{"agent_id": "agent_1", "blocker": "agent_2", "code": "NODE_OCCUPIED", "seq": 38, "tick": 8, "type": "move_rejected"}
+{"agent_id": "agent_2", "result": {"agent_id": "agent_2", "humidity_pct": 40.33, "temperature_c": 20.3, "zone": "C"}, "seq": 39, "task_id": "read_zone_C_env", "tick": 9, "type": "task_result"}
+{"agent_id": "agent_2", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_2", "humidity_pct": 40.33, "temperature_c": 20.3, "zone": "C"}, "seq": 40, "task_id": "read_zone_C_env", "tick": 9, "type": "event"}
+{"agent_id": "agent_1", "blocker": "agent_2", "code": "NODE_OCCUPIED", "seq": 41, "tick": 9, "type": "move_rejected"}
+{"agent_id": "agent_2", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 42, "task_id": "read_zone_C_env", "tick": 9, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"agent_id": "agent_2", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 43, "task_id": "read_zone_A_env", "tick": 10, "to_state": "ASSIGNED", "type": "task_transition"}
+{"allocator": "nearest", "assignments": {"read_zone_A_env": "agent_2"}, "n_tasks": 2, "objective": 1.8627917833800187, "plan_version": 1, "seq": 44, "status": "ok", "tick": 10, "trigger": "cycle", "type": "allocation", "unassigned": {}}
+{"agent_id": "agent_2", "from_state": "ASSIGNED", "reason": "", "seq": 45, "task_id": "read_zone_A_env", "tick": 10, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_2", "from_state": "READY", "reason": "dispatch_approved", "seq": 46, "task_id": "read_zone_A_env", "tick": 10, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [9, 2], "seq": 47, "tick": 10, "to_cell": [8, 2], "type": "move"}
+{"agent_id": "agent_2", "blocker": "agent_1", "code": "NODE_OCCUPIED", "seq": 48, "tick": 10, "type": "move_rejected"}
+{"agent_id": "agent_3", "result": {"agent_id": "agent_3", "humidity_pct": 59.11, "temperature_c": 18.69, "zone": "B"}, "seq": 49, "task_id": "read_zone_B_env", "tick": 11, "type": "task_result"}
+{"agent_id": "agent_3", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_3", "humidity_pct": 59.11, "temperature_c": 18.69, "zone": "B"}, "seq": 50, "task_id": "read_zone_B_env", "tick": 11, "type": "event"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [10, 2], "seq": 51, "tick": 11, "to_cell": [9, 2], "type": "move"}
+{"agent_id": "agent_3", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 52, "task_id": "read_zone_B_env", "tick": 11, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"agent_id": "agent_3", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 53, "task_id": "inspect_zone_A_visual", "tick": 12, "to_state": "ASSIGNED", "type": "task_transition"}
+{"allocator": "nearest", "assignments": {"inspect_zone_A_visual": "agent_3"}, "n_tasks": 1, "objective": 1.3230859010270775, "plan_version": 1, "seq": 54, "status": "ok", "tick": 12, "trigger": "cycle", "type": "allocation", "unassigned": {}}
+{"agent_id": "agent_3", "from_state": "ASSIGNED", "reason": "", "seq": 55, "task_id": "inspect_zone_A_visual", "tick": 12, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_3", "from_state": "READY", "reason": "dispatch_approved", "seq": 56, "task_id": "inspect_zone_A_visual", "tick": 12, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [9, 12], "seq": 57, "tick": 12, "to_cell": [8, 12], "type": "move"}
+{"agent_id": "agent_2", "blocker": "agent_1", "code": "NODE_OCCUPIED", "seq": 58, "tick": 12, "type": "move_rejected"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [8, 12], "seq": 59, "tick": 13, "to_cell": [7, 12], "type": "move"}
+{"agent_id": "agent_1", "blocker": "agent_2", "code": "EDGE_SWAP", "seq": 60, "tick": 13, "type": "move_rejected"}
+{"agent_id": "agent_2", "blocker": "agent_1", "code": "EDGE_SWAP", "seq": 61, "tick": 13, "type": "move_rejected"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [7, 12], "seq": 62, "tick": 14, "to_cell": [6, 12], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [9, 2], "seq": 63, "tick": 14, "to_cell": [9, 3], "type": "move"}
+{"agent_id": "agent_1", "blocker": "agent_2", "code": "NODE_OCCUPIED", "seq": 64, "tick": 14, "type": "move_rejected"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [8, 2], "seq": 65, "tick": 15, "to_cell": [9, 2], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [6, 12], "seq": 66, "tick": 15, "to_cell": [6, 13], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [9, 2], "seq": 67, "tick": 16, "to_cell": [10, 2], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [6, 13], "seq": 68, "tick": 16, "to_cell": [6, 14], "type": "move"}
+{"agent_id": "agent_1", "energy": 3.0, "seq": 69, "task_id": "inspect_zone_C_visual", "tick": 16, "type": "work_start", "work_ticks": 5}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [6, 14], "seq": 70, "tick": 17, "to_cell": [5, 14], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [9, 3], "seq": 71, "tick": 17, "to_cell": [8, 3], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [5, 14], "seq": 72, "tick": 18, "to_cell": [4, 14], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [8, 3], "seq": 73, "tick": 18, "to_cell": [7, 3], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [4, 14], "seq": 74, "tick": 19, "to_cell": [3, 14], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [7, 3], "seq": 75, "tick": 19, "to_cell": [6, 3], "type": "move"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [3, 14], "seq": 76, "tick": 20, "to_cell": [2, 14], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [6, 3], "seq": 77, "tick": 20, "to_cell": [5, 3], "type": "move"}
+{"agent_id": "agent_1", "result": {"agent_id": "agent_1", "defects_found": 0, "observation_id": "obs-inspect_zone_C_visual-212366", "zone": "C"}, "seq": 78, "task_id": "inspect_zone_C_visual", "tick": 21, "type": "task_result"}
+{"agent_id": "agent_1", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_1", "defects_found": 0, "observation_id": "obs-inspect_zone_C_visual-212366", "zone": "C"}, "seq": 79, "task_id": "inspect_zone_C_visual", "tick": 21, "type": "event"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [2, 14], "seq": 80, "tick": 21, "to_cell": [2, 13], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [5, 3], "seq": 81, "tick": 21, "to_cell": [4, 3], "type": "move"}
+{"agent_id": "agent_1", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 82, "task_id": "inspect_zone_C_visual", "tick": 21, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [2, 13], "seq": 83, "tick": 22, "to_cell": [2, 12], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [4, 3], "seq": 84, "tick": 22, "to_cell": [3, 3], "type": "move"}
+{"agent_id": "agent_3", "energy": 3.0, "seq": 85, "task_id": "inspect_zone_A_visual", "tick": 22, "type": "work_start", "work_ticks": 5}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [3, 3], "seq": 86, "tick": 23, "to_cell": [3, 4], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [3, 4], "seq": 87, "tick": 24, "to_cell": [3, 5], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [3, 5], "seq": 88, "tick": 25, "to_cell": [3, 6], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [3, 6], "seq": 89, "tick": 26, "to_cell": [3, 7], "type": "move"}
+{"agent_id": "agent_3", "result": {"agent_id": "agent_3", "defects_found": 1, "observation_id": "obs-inspect_zone_A_visual-574449", "zone": "A"}, "seq": 90, "task_id": "inspect_zone_A_visual", "tick": 27, "type": "task_result"}
+{"agent_id": "agent_3", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_3", "defects_found": 1, "observation_id": "obs-inspect_zone_A_visual-574449", "zone": "A"}, "seq": 91, "task_id": "inspect_zone_A_visual", "tick": 27, "type": "event"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [3, 7], "seq": 92, "tick": 27, "to_cell": [3, 8], "type": "move"}
+{"agent_id": "agent_3", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 93, "task_id": "inspect_zone_A_visual", "tick": 27, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [3, 8], "seq": 94, "tick": 28, "to_cell": [2, 8], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [2, 8], "seq": 95, "tick": 29, "to_cell": [2, 9], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [2, 9], "seq": 96, "tick": 30, "to_cell": [2, 10], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [2, 10], "seq": 97, "tick": 31, "to_cell": [2, 11], "type": "move"}
+{"agent_id": "agent_2", "blocker": "agent_3", "code": "NODE_OCCUPIED", "seq": 98, "tick": 32, "type": "move_rejected"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [2, 12], "seq": 99, "tick": 33, "to_cell": [1, 12], "type": "move"}
+{"agent_id": "agent_2", "blocker": "agent_3", "code": "NODE_OCCUPIED", "seq": 100, "tick": 33, "type": "move_rejected"}
+{"agent_id": "agent_3", "energy": 0.5, "from_cell": [1, 12], "seq": 101, "tick": 34, "to_cell": [0, 12], "type": "move"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [2, 11], "seq": 102, "tick": 34, "to_cell": [2, 12], "type": "move"}
+{"agent_id": "agent_2", "energy": 4.0, "seq": 103, "task_id": "read_zone_A_env", "tick": 34, "type": "work_start", "work_ticks": 4}
+{"agent_id": "agent_2", "result": {"agent_id": "agent_2", "humidity_pct": 58.6, "temperature_c": 22.05, "zone": "A"}, "seq": 104, "task_id": "read_zone_A_env", "tick": 38, "type": "task_result"}
+{"agent_id": "agent_2", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_2", "humidity_pct": 58.6, "temperature_c": 22.05, "zone": "A"}, "seq": 105, "task_id": "read_zone_A_env", "tick": 38, "type": "event"}
+{"agent_id": "agent_2", "energy": 0.5, "from_cell": [2, 12], "seq": 106, "tick": 38, "to_cell": [1, 12], "type": "move"}
+{"agent_id": "agent_2", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 107, "task_id": "read_zone_A_env", "tick": 38, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"agent_id": "agent_1", "from_state": "PENDING", "reason": "allocation:nearest", "seq": 108, "task_id": "compile_report", "tick": 39, "to_state": "ASSIGNED", "type": "task_transition"}
+{"allocator": "nearest", "assignments": {"compile_report": "agent_1"}, "n_tasks": 1, "objective": 1.244000933706816, "plan_version": 1, "seq": 109, "status": "ok", "tick": 39, "trigger": "cycle", "type": "allocation", "unassigned": {}}
+{"agent_id": "agent_1", "from_state": "ASSIGNED", "reason": "", "seq": 110, "task_id": "compile_report", "tick": 39, "to_state": "READY", "type": "task_transition"}
+{"agent_id": "agent_1", "from_state": "READY", "reason": "dispatch_approved", "seq": 111, "task_id": "compile_report", "tick": 39, "to_state": "EXECUTING", "type": "task_transition"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [10, 2], "seq": 112, "tick": 39, "to_cell": [9, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [9, 2], "seq": 113, "tick": 40, "to_cell": [8, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [8, 2], "seq": 114, "tick": 41, "to_cell": [7, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [7, 2], "seq": 115, "tick": 42, "to_cell": [6, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [6, 2], "seq": 116, "tick": 43, "to_cell": [5, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [5, 2], "seq": 117, "tick": 44, "to_cell": [4, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [4, 2], "seq": 118, "tick": 45, "to_cell": [3, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [3, 2], "seq": 119, "tick": 46, "to_cell": [2, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [2, 2], "seq": 120, "tick": 47, "to_cell": [1, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [1, 2], "seq": 121, "tick": 48, "to_cell": [0, 2], "type": "move"}
+{"agent_id": "agent_1", "energy": 0.5, "from_cell": [0, 2], "seq": 122, "tick": 49, "to_cell": [0, 1], "type": "move"}
+{"agent_id": "agent_1", "energy": 1.0, "seq": 123, "task_id": "compile_report", "tick": 49, "type": "work_start", "work_ticks": 2}
+{"agent_id": "agent_1", "result": {"agent_id": "agent_1", "inputs": ["inspect_zone_A_visual", "inspect_zone_B_visual", "inspect_zone_C_visual", "read_zone_A_env", "read_zone_B_env", "read_zone_C_env"], "n_inputs": 6, "zones_covered": ["A", "B", "C"]}, "seq": 124, "task_id": "compile_report", "tick": 51, "type": "task_result"}
+{"agent_id": "agent_1", "event_type": "TASK_COMPLETED", "result": {"agent_id": "agent_1", "inputs": ["inspect_zone_A_visual", "inspect_zone_B_visual", "inspect_zone_C_visual", "read_zone_A_env", "read_zone_B_env", "read_zone_C_env"], "n_inputs": 6, "zones_covered": ["A", "B", "C"]}, "seq": 125, "task_id": "compile_report", "tick": 51, "type": "event"}
+{"agent_id": "agent_1", "from_state": "EXECUTING", "reason": "postcondition_ok", "seq": 126, "task_id": "compile_report", "tick": 51, "to_state": "SUCCEEDED", "type": "task_transition"}
+{"seq": 127, "tick": 51, "type": "objective_realized", "value": 5.916387}
+{"seq": 128, "status": "COMPLETE", "tasks_final": [{"agent_id": "agent_1", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "compile_report"}, {"agent_id": "agent_3", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "inspect_zone_A_visual"}, {"agent_id": "agent_3", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "inspect_zone_B_visual"}, {"agent_id": "agent_1", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "inspect_zone_C_visual"}, {"agent_id": "agent_2", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "read_zone_A_env"}, {"agent_id": "agent_3", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "read_zone_B_env"}, {"agent_id": "agent_2", "attempts": 1, "mandatory": true, "reason": "", "state": "SUCCEEDED", "task_id": "read_zone_C_env"}], "tick": 51, "type": "mission_end"}

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+*.egg-info/
+build/
+dist/
+# generated experiment artefacts that are large (small summaries are kept)
+results/traces_all/
+results_check/
+out.jsonl

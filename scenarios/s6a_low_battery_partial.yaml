@@ -1,0 +1,38 @@
+extends: s0_nominal.yaml
+name: s6a_low_battery_partial
+description: agent_1 starts with too little battery for any task; allocator must route work to agent_3
+  within its battery budget.
+expectation:
+  mission_status: COMPLETE
+  agent_1_takes_no_visual_task: true
+agents:
+- agent_id: agent_1
+  capabilities:
+  - navigation
+  - visual_inspection
+  - reporting
+  start:
+  - 1
+  - 2
+  battery: 13
+  battery_reserve: 10
+- agent_id: agent_2
+  capabilities:
+  - navigation
+  - environmental_reading
+  start:
+  - 9
+  - 5
+  battery: 100
+  battery_reserve: 10
+- agent_id: agent_3
+  capabilities:
+  - navigation
+  - visual_inspection
+  - environmental_reading
+  - reporting
+  start:
+  - 11
+  - 14
+  battery: 55
+  battery_reserve: 10

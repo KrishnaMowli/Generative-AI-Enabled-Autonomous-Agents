@@ -1,0 +1,8 @@
+extends: s0_nominal.yaml
+name: s9_provider_down
+description: 'The LLM provider is persistently unavailable: bounded retries, then fail closed.'
+expectation:
+  mission_status: PLANNER_UNAVAILABLE
+planner_faults:
+- provider_error
+planner_faults_persistent: true

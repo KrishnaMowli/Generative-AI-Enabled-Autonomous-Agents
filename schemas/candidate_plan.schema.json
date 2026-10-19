@@ -1,0 +1,116 @@
+{
+  "$defs": {
+    "TaskSpec": {
+      "additionalProperties": false,
+      "description": "Candidate task proposed by the planner. Strict: no extra fields, no coercion.",
+      "properties": {
+        "acceptance_criteria": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Acceptance Criteria",
+          "type": "array"
+        },
+        "depends_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        },
+        "estimated_duration_s": {
+          "title": "Estimated Duration S",
+          "type": "number"
+        },
+        "mandatory": {
+          "default": true,
+          "title": "Mandatory",
+          "type": "boolean"
+        },
+        "priority": {
+          "title": "Priority",
+          "type": "integer"
+        },
+        "required_capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Required Capabilities",
+          "type": "array"
+        },
+        "retry_policy": {
+          "default": "safe_to_retry",
+          "title": "Retry Policy",
+          "type": "string"
+        },
+        "target_zone": {
+          "title": "Target Zone",
+          "type": "string"
+        },
+        "task_id": {
+          "title": "Task Id",
+          "type": "string"
+        },
+        "task_type": {
+          "title": "Task Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id",
+        "task_type",
+        "target_zone",
+        "required_capabilities",
+        "priority",
+        "estimated_duration_s",
+        "acceptance_criteria"
+      ],
+      "title": "TaskSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Planner response envelope. Only status=='plan' proceeds to semantic validation.",
+  "properties": {
+    "questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Questions",
+      "type": "array"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    },
+    "status": {
+      "enum": [
+        "plan",
+        "needs_clarification",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/TaskSpec"
+      },
+      "title": "Tasks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "title": "CandidatePlan",
+  "type": "object"
+}

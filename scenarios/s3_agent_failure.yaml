@@ -1,0 +1,16 @@
+extends: s0_nominal.yaml
+name: s3_agent_failure
+description: 'agent_1 fails at a seeded tick in [8,16]; recovery is feasible via agent_3. (Modelling assumption:
+  the failed agent is cleared from the grid and does not block its cell.)'
+expectation:
+  mission_status_with_replan: COMPLETE
+  mission_status_without_replan: INCOMPLETE
+events:
+- type: AGENT_FAILED
+  agent_id: agent_1
+  tick_window:
+  - 8
+  - 16
+settings_overrides:
+  simulation:
+    failed_agents_block_cell: false

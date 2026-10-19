@@ -1,0 +1,63 @@
+# Default settings. Scenario files may override any key via `settings_overrides`.
+simulation:
+  tick_seconds: 5            # one simulation tick = 5 s; agents move one cell per tick
+  max_ticks: 600
+  stall_limit_ticks: 25      # consecutive no-progress ticks before declaring the mission stalled
+  min_replan_interval_ticks: 2   # debounce: minimum ticks between two replans
+  max_hold_ticks: 15         # consecutive blocked-move ticks before a DEADLOCK event
+  failed_agents_block_cell: true # a failed/unavailable agent physically blocks its cell
+  max_task_attempts: 3
+  energy_per_move: 0.5       # battery units per cell moved (agents may override)
+  task_failure_probability: 0.0  # seeded random execution failure (0 = off)
+
+capabilities: [navigation, visual_inspection, environmental_reading, reporting]
+
+task_catalog:
+  visual_inspection:
+    capability: visual_inspection
+    acceptance_criterion: inspection_result_recorded
+    energy: 3.0
+    default_duration_s: 30
+    default_priority: 3
+    default_retry_policy: safe_to_retry
+  environmental_reading:
+    capability: environmental_reading
+    acceptance_criterion: reading_recorded
+    energy: 4.0
+    default_duration_s: 20
+    default_priority: 2
+    default_retry_policy: verify_before_retry
+  compile_report:
+    capability: reporting
+    acceptance_criterion: report_compiled
+    energy: 1.0
+    default_duration_s: 15
+    default_priority: 4
+    default_retry_policy: verify_before_retry
+
+planner_limits:
+  max_tasks: 30
+  min_priority: 1
+  max_priority: 5
+  max_duration_s: 600
+  max_graph_depth: 6
+  max_repair_attempts: 1     # one repair attempt after the first response, then fail closed
+  max_provider_retries: 2    # retries for retryable provider errors (timeouts, 429, 5xx)
+  max_total_calls: 4         # hard cap on provider calls per mission
+  max_mission_chars: 2000
+  max_output_chars: 20000
+  injection_policy: reject   # reject | warn
+
+allocation:
+  weights:
+    distance: 1.0     # w_d
+    time: 1.0         # w_t
+    energy: 0.5       # w_e
+    priority: 1.0     # w_p  (priority-weighted travel delay)
+    load: 0.5         # w_l  (already-committed work of the agent)
+    makespan: 1.0     # w_m  (MILP only: weight on the max-agent-finish-time proxy Z)
+  norms:
+    distance: auto    # grid rows + cols
+    time: auto        # distance norm + longest task duration (ticks)
+    energy: auto      # distance norm * energy_per_move + largest task energy
+  workload_limit_ticks: null   # optional per-agent cap on assigned (travel + work) ticks

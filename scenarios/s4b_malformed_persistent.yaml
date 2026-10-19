@@ -1,0 +1,8 @@
+extends: s0_nominal.yaml
+name: s4b_malformed_persistent
+description: 'Every LLM response is malformed: fail closed after one repair attempt, nothing executes.'
+expectation:
+  mission_status: PLAN_REJECTED
+planner_faults:
+- malformed_json
+planner_faults_persistent: true

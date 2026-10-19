@@ -1,0 +1,12 @@
+extends: s0_nominal.yaml
+name: s2_blocked_route
+description: Door (3,7) between the chambers is blocked at tick 3; the other door remains, so routes must
+  be recomputed.
+expectation:
+  mission_status: COMPLETE
+events:
+- type: CELL_BLOCKED
+  tick: 3
+  cell:
+  - 3
+  - 7

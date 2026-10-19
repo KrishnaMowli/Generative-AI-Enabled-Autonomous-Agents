@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autonomous-collab"
+version = "1.0.0"
+description = "GenAI-enabled task decomposition and dynamic allocation for heterogeneous autonomous agents (simulation-first)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24,<3",
+    "scipy>=1.9,<2",
+    "pydantic>=2.5,<3",
+    "pyyaml>=6,<7",
+    "matplotlib>=3.7,<4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4,<9"]
+
+[project.scripts]
+autocollab = "autonomous_collab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+    "network: tests that would need a live network/API key (never run by default)",
+]

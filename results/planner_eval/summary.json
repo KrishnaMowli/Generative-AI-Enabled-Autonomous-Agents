@@ -1,0 +1,24 @@
+{
+  "provider": "mock",
+  "model": "rule-based-v1",
+  "n_prompts": 14,
+  "accuracy_overall": 0.9285714285714286,
+  "plan_prompts": 8,
+  "plan_validity_rate": 0.875,
+  "plan_validity_ci95": [
+    0.5291051942301386,
+    0.9775830911367038
+  ],
+  "ambiguous_correct": [
+    1,
+    1,
+    1
+  ],
+  "adversarial_rejected": [
+    1,
+    1,
+    1
+  ],
+  "note": "mock provider = keyword parser; scores measure the harness, not LLM quality",
+  "fault_modes_executed_when_persistent": 0
+}

@@ -1,0 +1,38 @@
+extends: s0_nominal.yaml
+name: s6b_resources_insufficient
+description: 'Every agent is below the battery needed for any task: no feasible allocation; mission must
+  NOT claim success.'
+expectation:
+  mission_status: INCOMPLETE
+  unassigned_reason: BATTERY_LIMIT
+agents:
+- agent_id: agent_1
+  capabilities:
+  - navigation
+  - visual_inspection
+  - reporting
+  start:
+  - 1
+  - 2
+  battery: 12
+  battery_reserve: 10
+- agent_id: agent_2
+  capabilities:
+  - navigation
+  - environmental_reading
+  start:
+  - 9
+  - 5
+  battery: 12
+  battery_reserve: 10
+- agent_id: agent_3
+  capabilities:
+  - navigation
+  - visual_inspection
+  - environmental_reading
+  - reporting
+  start:
+  - 11
+  - 14
+  battery: 12
+  battery_reserve: 10

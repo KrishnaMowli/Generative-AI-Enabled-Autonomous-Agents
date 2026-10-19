@@ -1,0 +1,8 @@
+extends: s0_nominal.yaml
+name: s5_invalid_plan
+description: 'The planner persistently proposes a cyclic dependency graph: rejected before allocation.'
+expectation:
+  mission_status: PLAN_REJECTED
+planner_faults:
+- cycle
+planner_faults_persistent: true

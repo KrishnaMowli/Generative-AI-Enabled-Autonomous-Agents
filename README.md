@@ -1,5 +1,7 @@
 # Generative-AI-Enabled Autonomous Agents
 
+> **New here? Open [`START_HERE.md`](START_HERE.md)** — it tells you which file to open and what to do, step by step. To rebuild the project from scratch, follow [`docs/BUILD_GUIDE.md`](docs/BUILD_GUIDE.md).
+
 **A language model proposes a task plan; deterministic code checks it, assigns it to robots, keeps it safe, and replans when something breaks.**
 A simulation-first Python project for *task decomposition and dynamic allocation among heterogeneous autonomous agents* — fully runnable offline, with tests and reproducible experiments.
 
@@ -7,6 +9,7 @@ A simulation-first Python project for *task decomposition and dynamic allocation
 
 | I want to… | Go to |
 |---|---|
+| **Not sure where to begin** | [`START_HERE.md`](START_HERE.md) |
 | **Run it and check it works (3 commands)** | [Quick start](#quick-start-3-commands-no-api-key) |
 | **See the results without installing anything** | [Results at a glance](#results-at-a-glance) |
 | **Verify every claim made here** | [Verify the claims](#verify-the-claims) |
@@ -180,7 +183,7 @@ Modelling assumptions: failure scenarios s3/s8/s10 assume the failed agent is cl
 
 ## Repository layout
 ```
-README.md  LICENSE  pyproject.toml  requirements.txt  requirements-lock.txt (exact tested versions)
+START_HERE.md  README.md  LICENSE  pyproject.toml  requirements.txt  requirements-lock.txt (exact tested versions)
 config/default.yaml     settings: cost weights, limits, task catalog
 scenarios/              14 scenario YAMLs + labelled planner prompts
 prompts/                versioned planner prompt            schemas/   JSON Schemas generated from the models
@@ -190,7 +193,7 @@ src/autonomous_collab/  models, config, environment, simulator, coordinator, run
   allocation/           cost model, MILP, Hungarian, greedy, nearest
 tests/                  535 tests (unit, component, integration, fault injection, regression)
 scripts/                quickstart.sh, run_all.sh, run_demo.sh, headline_numbers.py, verify_reproduction.py, check_traceability.py, export_schemas.py
-docs/                   ARCHITECTURE, ALLOCATION, SAFETY, EXPERIMENTS, TRACEABILITY, PROJECT_STATUS, ROS2_ROADMAP (plan only)
+docs/                   ARCHITECTURE, ALLOCATION, SAFETY, EXPERIMENTS, TRACEABILITY, PROJECT_STATUS, ROS2_ROADMAP (plan only), BUILD_GUIDE (rebuild from scratch), reference/ (original roadmap PDF)
 results/                runs.csv, summary.csv, paired.csv, manifest.json, report.md, figures/, traces/, planner_eval/
 ```
 
